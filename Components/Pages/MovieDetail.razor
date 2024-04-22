@@ -1,0 +1,72 @@
+﻿@page "/movie"
+@inject OmdbService OmdbService
+@using OntarioMovieApp.Services
+@using OntarioMovieApp.Models
+
+@if (selectedMovie != null)
+{
+    <div class="overlay" @onclick="HideDetails">
+        <div class="movie-detail" @onclick:stopPropagation>
+            <img src="@selectedMovie.Poster" alt="Poster of @selectedMovie.Title" class="movie-poster" />
+            <div class="movie-info">
+                <h2>@selectedMovie.Title (@selectedMovie.Year)</h2>
+                <p><strong>Genre:</strong> @selectedMovie.Genre</p>
+                <p><strong>Actors:</strong> @selectedMovie.Actors</p>
+                <p><strong>Plot:</strong> @selectedMovie.Plot</p>
+                <!-- <p><strong>Rating:</strong> @selectedMovie.Rated</p>--> 
+                <button class="btn btn-secondary" @onclick="() => HideDetails()">Close</button>
+            </div>
+        </div>
+    </div>
+}
+else if (movies == null || !movies.Any())
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="masonry">
+        @foreach (var movie in movies)
+        {
+            <div class="masonry-item" @onclick="() => ShowDetails(movie)">
+                <img src="@movie.Poster" alt="Poster of @movie.Title" class="movie-poster" />
+                <div class="movie-info">
+                    <h3>@movie.Title (@movie.Year)</h3>
+                    <p><strong>Genre:</strong> @movie.Genre</p>
+                    <p>@movie.Plot.Substring(0, Math.Min(100, @movie.Plot.Length))...</p> <!-- Display truncated plot -->
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private List<Movie> movies;
+    private Movie selectedMovie;
+
+    protected override async Task OnInitializedAsync()
+    {
+        movies = await OmdbService.GetMoviesAsync(new List<string>
+        {
+            "tt0111161", "tt0068646", "tt0071562", "tt0468569", "tt0050083",
+            "tt0108052", "tt0110912", "tt0167260", "tt0060196", "tt0137523",
+            "tt0120737", "tt0080684", "tt0109830", "tt1375666", "tt0167261",
+            "tt0073486", "tt0099685", "tt0133093", "tt0047478", "tt0317248"
+        });
+    }
+
+    public void ShowDetails(Movie movie)
+    {
+        Console.WriteLine($"Showing details for: {movie.Title}");  // Check console for this output
+        selectedMovie = movie;
+        StateHasChanged();  // Force re-rendering of the component
+    }
+
+    private void HideDetails()
+    {
+        Console.WriteLine("Hiding details.");  // Ensure this gets printed when closing details
+        selectedMovie = null;
+        StateHasChanged();  // Force re-rendering of the component
+    }
+
+}

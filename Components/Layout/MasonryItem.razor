@@ -1,0 +1,19 @@
+﻿@inject OmdbService OmdbService
+@using OntarioMovieApp.Services
+@using OntarioMovieApp.Models
+<h3>MasonryItem</h3>
+
+@code {
+    [Parameter]
+    public Movie Movie { get; set; }
+}
+
+<div class="masonry-item">
+    <img src="@Movie.Poster" alt="Poster of @Movie.Title" class="movie-poster" />
+    <div class="movie-info">
+        <h3>@Movie.Title (@Movie.Year)</h3>
+        <p><strong>Genre:</strong> @Movie.Genre</p>
+        <p><strong>Actors:</strong> @Movie.Actors</p>
+        <p>@Movie.Plot</p>
+    </div>
+</div>

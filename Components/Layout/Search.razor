@@ -1,0 +1,31 @@
+﻿@inject OmdbService OmdbService
+@using OntarioMovieApp.Services
+@using OntarioMovieApp.Models
+
+<InputText @bind-Value="searchTerm" placeholder="Search for movies..." />
+<button @onclick="SearchMovie">Search</button>
+
+@if (searchResults != null)
+{
+    <div class="masonry">
+        @foreach (var movie in searchResults)
+        {
+            <MasonryItem Title="@movie.Title" Year="@movie.Year" Genre="@movie.Genre" 
+                         Actors="@movie.Actors" Plot="@movie.Plot" Poster="@movie.Poster" />
+        }
+    </div>
+}
+
+@code {
+    private string searchTerm;
+    private List<Movie> searchResults;
+
+    private async Task SearchMovie()
+    {
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+         
+        }
+    }
+}
+
