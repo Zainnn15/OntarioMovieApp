@@ -8,6 +8,5 @@
         public string Actors { get; set; }
         public string Plot { get; set; }
         public string Poster { get; set; }
-        // Add more properties as needed based on the OMDB API response.
     }
 }

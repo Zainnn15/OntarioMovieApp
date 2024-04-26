@@ -5,17 +5,13 @@
 
 @if (selectedMovie != null)
 {
-    <div class="overlay" @onclick="HideDetails">
-        <div class="movie-detail" @onclick:stopPropagation>
-            <img src="@selectedMovie.Poster" alt="Poster of @selectedMovie.Title" class="movie-poster" />
-            <div class="movie-info">
-                <h2>@selectedMovie.Title (@selectedMovie.Year)</h2>
-                <p><strong>Genre:</strong> @selectedMovie.Genre</p>
-                <p><strong>Actors:</strong> @selectedMovie.Actors</p>
-                <p><strong>Plot:</strong> @selectedMovie.Plot</p>
-                <!-- <p><strong>Rating:</strong> @selectedMovie.Rated</p>--> 
-                <button class="btn btn-secondary" @onclick="() => HideDetails()">Close</button>
-            </div>
+    <div class="movie-detail" @onclick:stopPropagation>
+        <img src="@selectedMovie.Poster" alt="Poster of @selectedMovie.Title" class="movie-poster" />
+        <div class="movie-info">
+            <h2>@selectedMovie.Title (@selectedMovie.Year)</h2>
+            <p><strong>Genre:</strong> @selectedMovie.Genre</p>
+            <p><strong>Actors:</strong> @selectedMovie.Actors</p>
+            <p><strong>Plot:</strong> @selectedMovie.Plot</p>
         </div>
     </div>
 }
@@ -28,12 +24,13 @@ else
     <div class="masonry">
         @foreach (var movie in movies)
         {
-            <div class="masonry-item" @onclick="() => ShowDetails(movie)">
+            <div class="masonry-item" @onclick="() => SelectMovie(movie)">
                 <img src="@movie.Poster" alt="Poster of @movie.Title" class="movie-poster" />
                 <div class="movie-info">
                     <h3>@movie.Title (@movie.Year)</h3>
                     <p><strong>Genre:</strong> @movie.Genre</p>
-                    <p>@movie.Plot.Substring(0, Math.Min(100, @movie.Plot.Length))...</p> <!-- Display truncated plot -->
+                    <p><strong>Actors:</strong> @movie.Actors</p>
+                    <p><strong>Plot:</strong> @movie.Plot</p>
                 </div>
             </div>
         }
@@ -55,18 +52,8 @@ else
         });
     }
 
-    public void ShowDetails(Movie movie)
+    private void SelectMovie(Movie movie)
     {
-        Console.WriteLine($"Showing details for: {movie.Title}");  // Check console for this output
         selectedMovie = movie;
-        StateHasChanged();  // Force re-rendering of the component
     }
-
-    private void HideDetails()
-    {
-        Console.WriteLine("Hiding details.");  // Ensure this gets printed when closing details
-        selectedMovie = null;
-        StateHasChanged();  // Force re-rendering of the component
-    }
-
 }

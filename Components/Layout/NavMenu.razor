@@ -1,12 +1,16 @@
 ﻿@inject IJSRuntime JSRuntime
 
-<header class="top-row navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">OntarioMovieApp</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+<header>
+
+    <div class="navbar-top">
+        <a class="navbar-brand" href="">
+            <img src="ontario-logo--desktop.svg" alt="Ontario Logo" />
+        </a>
+        <h2 class="navbar-title">All things Movies and TVs</h2>
+    </div>
+
+    <nav class="navbar-bottom">
+        <div class="container-fluid">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <NavLink class="nav-link" href="" Match="NavLinkMatch.All">Home</NavLink>
@@ -16,14 +20,11 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </nav>
 </header>
-
 
 @code {
     private bool collapseNavMenu = true;
-
-    private string NavMenuCssClass => collapseNavMenu ? "collapse navbar-collapse" : "navbar-collapse collapse show";
 
     private void ToggleNavMenu()
     {

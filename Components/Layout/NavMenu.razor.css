@@ -1,129 +1,122 @@
-/* Set a font-size baseline */
 html {
     font-size: 16px;
 }
 
-/* Style adjustments for the toggler */
-.navbar-toggler {
-    cursor: pointer;
-    width: 44px; /* 2.75rem */
-    height: 44px; /* 2.75rem */
-    color: white;
-    border: none;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 70%;
-    align-self: center;
-    border-radius: 0.25rem; /* Add rounded corners */
-    display: none; /* Hide by default and will be overridden in media query */
+/* Styles the top navbar */
+.navbar-top {
+    background-color: #1a1a1a; 
+    padding: 1.5rem 1rem;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
 }
 
-/* Apply the Ontario Design System's dark blue color */
-.top-row {
-    background-color: #1a1a1a;
+/* Logo */
+.navbar-brand img {
+    max-width: 100%; 
+    height: auto; 
+    width: 160px; 
+}
+
+/* Title */
+.navbar-title {
+    font-family: 'Raleway', 'Open Sans', 'Helvetica Neue', sans-serif;
     color: white;
+    text-align: center;
+    font-size: 1.5rem; 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+/* Styles the bottom navbar */
+.navbar-bottom {
+    background-color: #666666; 
+    display: flex;
+    justify-content: center; 
+    padding: 0.5rem 0; 
+}
+
+/* Navigation styles */
+.navbar-nav {
+    display: flow-root;
+}
+
+.navbar-brand,
+.navbar-collapse {
+    flex-basis: content;
+    flex-grow: 1;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem 1rem;
+    padding: 0;
 }
 
-/* Logo and branding */
 .navbar-brand {
-    font-family: 'Raleway', sans-serif;
-    color: white;
-    text-decoration: none;
-    font-size: 1.375rem;
-    margin-right: auto;
+    justify-content: flex-start; 
 }
 
-/* Navigation link styles */
+.navbar-collapse {
+    justify-content: flex-end; 
+    padding: 0;
+}
+
+
+.nav-item,
 .nav-link {
-    font-family: 'Open Sans', sans-serif;
+    font-size: 1.25rem; 
     color: white;
-    text-decoration: none;
-    padding: 0.25rem 1rem;
-    display: flex;
-    align-items: center;
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease;
+    padding: 0.5rem 1rem; 
+    display: inline-block; 
 }
 
-    .nav-link:hover, .nav-link:focus {
-        background-color: #0056b3;
-        color: white;
-        border-radius: 0.25rem;
-    }
+.nav-item {
+    margin: 0 10px; 
+}
 
+/* Hover effect for navbar */
+.nav-link:hover, .nav-link:focus {
+    background-color: transparent; 
+    color: #4b9cd3; 
+}
+
+/* Active link styling */
 .nav-item ::deep a.active {
-    background-color: #002145;
-    color: white;
+    background-color: transparent; 
+    color: #FFFFFF; 
 }
-
-.bi {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-    margin-right: 8px;
-}
-
-/* Responsive styles for navigation items */
-@media (max-width: 640px) {
-    .navbar-toggler {
-        display: block; /* Show the toggler icon on small screens */
+/* Responsive styles */
+@media (max-width: 992px) {
+    .navbar-title {
+        margin: 0; 
     }
 
-    .collapse {
-        background-color: #1a1a1a;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        border-radius: 0.25rem;
-        position: absolute;
-        top: 100%;
-        right: 1rem;
-        z-index: 999;
-        width: auto;
-        display: none; /* Hidden by default, will be shown when toggled */
-    }
-
-        .collapse.show {
-            display: block; /* Display the dropdown when toggled */
-        }
-
-    .nav-item {
-        padding: 0.5rem 1rem;
-        border-top: 1px solid #333;
-        width: 100%;
-    }
-
-        .nav-item:first-child {
-            border-top: none;
-        }
-
-    .nav-link {
-        padding: 0.5rem;
-        margin: 0;
-        width: 100%;
+    .navbar-bottom {
+        padding: 0; 
     }
 }
 
-@media (min-width: 641px) {
+@media (min-width: 993px) {
     .navbar-collapse {
-        justify-content: flex-end;
+        justify-content: flex-end; 
+    }
+}
+
+
+@media (max-width: 640px) {
+    .navbar-brand img {
+        width: 120px; 
     }
 
-    .nav-item {
-        margin-right: 1rem;
+    .navbar-title {
+        font-size: 1rem; 
     }
 
-    /* Show the navigation links inline for larger screens */
-    .nav-item, .nav-link {
-        padding: 0.5rem 1rem;
-        display: inline-block;
+    .nav-item,
+    .nav-link {
+        font-size: 0.9rem; 
     }
 
-    /* Ensure that the navbar brand and navbar toggler are properly aligned */
-    .navbar-brand, .navbar-toggler {
-        align-self: center;
+    .navbar-bottom {
+        padding: 0.5rem; 
     }
 }
